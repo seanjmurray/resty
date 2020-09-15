@@ -1,0 +1,26 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 300;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
