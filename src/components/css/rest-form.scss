@@ -1,0 +1,26 @@
+form {
+    padding: 2em;
+}
+
+button:hover {
+    background-color: #ff6600;
+}
+.method {
+    width: 50%;
+    margin: 2em auto;
+}
+
+
+span {
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: .5em;
+}
+span:hover {
+    background-color: #ff6600;
+    color: #222;
+}
+.active {
+    background-color: #ff6600;
+    color: #222
+}
