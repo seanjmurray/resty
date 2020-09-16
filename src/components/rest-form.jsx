@@ -13,7 +13,7 @@ export default (props) => {
         axios({
             method: method,
             url: url,
-            data: JSON.parse(body),
+            data: body ? JSON.parse(body) : null,
           }).then(data => {
               console.log(data)
             props.handleResults(data)
