@@ -1,35 +1,41 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import './css/rest-form.scss'
-export default () => {
+
+
+export default (props) => {
     const [url, setUrl] = useState('')
-    const [method, setMethod] = useState('GET')
-    const [result, setResult] = useState()
+    const [method, setMethod] = useState('get')
+    const [body, setBody] = useState()
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(url, method)
-        setResult(
-            <div>
-                <h2>Method: {method}</h2>
-                <h3>URL: {url}</h3>
-            </div>
-        )
+        console.log(body)
+        axios({
+            method: method,
+            url: url,
+            data: JSON.parse(body),
+          }).then(data => {
+              console.log(data)
+            props.handleResults(data)
+        })
     }
 
     return (
-        <div className="main">
-
-        <form onSubmit={handleSubmit}>
-            <label htmlFor='url'>URL:</label>
-            <input type='text' value={url} onChange={e => setUrl(e.target.value)} placeholder='URL to test' />
-            <button>Send Request</button>
-            <div className="flex method">
-                <span id="GET" className={method === 'GET' ? 'active' : null} onClick={e => setMethod(e.target.id)}>GET</span>
-                <span id="POST" className={method === 'POST' ? 'active' : null} onClick={e => setMethod(e.target.id)}>POST</span>
-                <span id="PUT" className={method === 'PUT' ? 'active' : null} onClick={e => setMethod(e.target.id)}>PUT</span>
-                <span id="DELETE" className={method === 'DELETE' ? 'active' : null} onClick={e => setMethod(e.target.id)}>DELETE</span>
-            </div>
-        </form>
-        {result}
+        <div>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor='url'>URL:</label>
+                <input type='text' value={url} onChange={e => setUrl(e.target.value)} placeholder='URL to test' />
+                <button>Send Request</button>
+                <div className="flex method">
+                    <span id="get" className={method === 'get' ? 'active btn' : 'btn'} onClick={e => setMethod(e.target.id)}>GET</span>
+                    <span id="post" className={method === 'post' ? 'active btn' : 'btn'} onClick={e => setMethod(e.target.id)}>POST</span>
+                    <span id="put" className={method === 'put' ? 'active btn' : 'btn'} onClick={e => setMethod(e.target.id)}>PUT</span>
+                    <span id="delete" className={method === 'delete' ? 'active btn' : 'btn'} onClick={e => setMethod(e.target.id)}>DELETE</span>
+                </div>
+                {method === 'put' || method === 'post' ?
+                <textarea onChange={e => setBody(e.target.value)} placeholder='Input request body here in proper JSON format' rows='8' cols='40'></textarea> :
+                null}
+            </form>
         </div>
     )
 }
