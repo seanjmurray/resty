@@ -11,12 +11,12 @@ button:hover {
 }
 
 
-span {
+.btn {
     padding: 1em;
     border: 1px solid black;
     border-radius: .5em;
 }
-span:hover {
+.btn:hover {
     background-color: #ff6600;
     color: #222;
 }
