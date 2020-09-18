@@ -15,7 +15,9 @@ export default (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        props.handleSubmit(request)
+        let { method, url, data } = request
+        if (data) { data = JSON.parse(data) }
+        props.handleSubmit({ method, url, data })
     }
 
     const changeUrl = (e) => {
@@ -29,8 +31,7 @@ export default (props) => {
     }
 
     const changeBody = (e) => {
-        const data = JSON.parse(e.target.value)
-        console.log(data)
+        const data = e.target.value
         setRequest({...request, data})
     }
 
